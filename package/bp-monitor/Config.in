@@ -1,0 +1,10 @@
+#
+# Build and install Blood Pressure Libs
+# @autor Wariston Pereira <waristonfernando@gmail.com>
+#
+config BR2_PACKAGE_BP_MONITOR
+bool "bp-monitor"
+default y
+help
+	Blood presure measure function.
+	@Autor: Wariston Pereira (2019)
