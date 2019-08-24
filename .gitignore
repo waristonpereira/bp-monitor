@@ -1,0 +1,9 @@
+.vscode
+buildroot
+example/example
+src/*.o
+src/*.d
+src/libbpmonitor.so
+test/CMakeCache.txt
+test/cmake_install.cmake
+test/runTest
