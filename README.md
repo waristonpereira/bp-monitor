@@ -6,7 +6,6 @@
   * [Build for desktop](#build-for-desktop)
   * [Build for embedded (Raspberry PI v3)](#build-for-embedded)
 * [Usage](#usage)
-* [Contact](#contact)
 
 ### About
 
@@ -14,7 +13,7 @@ This project implements a library to find the systolic/diastolic pressures of th
 
 The vector is already processed, which means the data is filtered and formatted in mmHg. It contains the pulse pressure along the time representing an arterial blood pressure wave.
 
-More info on [doc](bp-monitor/doc) folder.
+More info on [doc](https://github.com/waristonpereira/bp-monitor/tree/master/doc) folder.
 
 `NOTICE: Instructions for Linux ecosystem like Ubuntu 19.04. Please adapt for your scenario. Thanks!`
 
@@ -129,4 +128,4 @@ An error is trigger on:
 * index_target > number_of_samples.
 * impossible measure at target.
 
-Example of use in folder [example](example).
+Example of use in folder [example](https://github.com/waristonpereira/bp-monitor/tree/master/example).
