@@ -13,7 +13,7 @@ This project implements a library to find the systolic/diastolic pressures of th
 
 The vector is already processed, which means the data is filtered and formatted in mmHg. It contains the pulse pressure along the time representing an arterial blood pressure wave.
 
-More info on [doc](https://github.com/waristonpereira/bp-monitor/tree/master/doc) folder.
+More info on [doc](https://github.com/waristonpereira/bp-monitor/tree/master/doc/README.md) folder.
 
 `NOTICE: Instructions for Linux ecosystem like Ubuntu 19.04. Please adapt for your scenario. Thanks!`
 
