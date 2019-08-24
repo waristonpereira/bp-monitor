@@ -10,6 +10,8 @@ typedef struct BP {
 
 class BP_MONITOR {
 	public:
+        BP_MONITOR();
+        ~BP_MONITOR();
 		BP measure(int[], int, int);
 };
 #endif

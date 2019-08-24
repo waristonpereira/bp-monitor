@@ -13,6 +13,7 @@ endef
 
 define BP_MONITOR_INSTALL_TARGET_CMDS
     $(INSTALL) -D -m 0755 $(@D)/libbpmonitor.so $(TARGET_DIR)/lib
+    $(INSTALL) -D -m 0755 $(@D)/bp-monitor.h $(TARGET_DIR)/usb/include
 endef
 
 $(eval $(generic-package))

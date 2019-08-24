@@ -1,5 +1,6 @@
 /*
  * Library for...
+ * @autor Wariston Pereira <waristonnfernando@gmail.com>
  */
 #include <bits/stdc++.h>
 #include "bp-monitor.h"
@@ -7,9 +8,9 @@
 using namespace std;
 
 /**
- * Return measure result from waveform vector at user selected point
+ * Return measure result from waveform array at user selected point
  *
- * @param vector containing entire waveform
+ * @param array containing entire waveform
  * @param size of the buffer
  * @param point index selected by user
  * @return BP struct result of measure
@@ -20,10 +21,10 @@ BP BP_MONITOR::measure(int buffer[], int size, int index){
 
 	// Prevent out of range
 	if (index > size + 1 || index <= 0 )
-		throw std::runtime_error("Invalid index");
+		throw std::out_of_range("Invalid index");
 	// Vector is empty ?
 	if ( size == 0 )
-		throw std::runtime_error("Invalid vector size");
+		throw std::out_of_range("Invalid vector size");
 	// Find the max value after index point
 	for (int i = index - 1; i < size; i++) { 
 		if (buffer[i] >= result.SBP){
@@ -45,7 +46,7 @@ BP BP_MONITOR::measure(int buffer[], int size, int index){
 		}
 	}
 	// Error on measure?
-	if ( result.DBP > result.SBP)
+	if ( result.DBP > result.SBP || result.DBP == result.SBP)
 		throw std::runtime_error("Error on measure");
 	// Return measure value 
     return result;
