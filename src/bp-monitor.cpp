@@ -5,7 +5,8 @@
  */
 #include "include/bp-monitor.h"
 #include <vector>
-
+#include <iostream>
+using std::cout;
 /**
  * Detect the valley from waveform array at user selected point 
  * or peak point
@@ -42,6 +43,7 @@ void bPressureMonitor::peakDetector(
     std::vector<point> &peaks) {
   int last = index;
   bool next = false;
+  peaks.clear();
   for (int i = index; i <= size; i++) {
     if (buffer[i] > buffer[last] || next == true) {
       last = i;
