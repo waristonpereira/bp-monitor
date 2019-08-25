@@ -1,5 +1,5 @@
 /*
- * Library to find the systolic/diastolic pressures of the closest pulse in a 
+ * Library to find the systolic/diastolic pressures on the closest pulse in a 
  * vector based on a point selected by the user.
  * @autor Wariston Pereira <waristonnfernando@gmail.com>
  */
@@ -16,13 +16,13 @@
 #endif
 
 /**
- * Detect the valley from waveform array from peak point
+ * Detect the trough from waveform array from peak point
  * @param array containing entire waveform
  * @param size of the buffer
  * @param peak point index
- * @return 0 if not found or valley point index
+ * @return 0 if not found or trough point index
  */
-int bPressureMonitor::valleyDetector(int* buffer, int size, int index) {
+int bPressureMonitor::troughDetector(int* buffer, int size, int index) {
   int last = index;
   for (int i = index; i >= 0; i--) {
     if ( buffer[i] < buffer[last])
@@ -35,7 +35,7 @@ int bPressureMonitor::valleyDetector(int* buffer, int size, int index) {
 }
 
 /**
- * Detect the all peaks in waveform and calculation the distance
+ * Detect the all peaks in the waveform and the calculate the distance
  *
  * @param array containing entire waveform
  * @param size of the buffer
@@ -55,7 +55,7 @@ void bPressureMonitor::peakDetector(
       next = false;
     }
     if (buffer[i] >= buffer[i-1] &&  buffer[i] > buffer[i+1]) {
-      int v = this->valleyDetector(buffer, size, last);
+      int v = this->troughDetector(buffer, size, last);
       int distance = last-v;
       if (v != last && distance != 0) {
         point p = {v, last, distance};
@@ -71,7 +71,8 @@ void bPressureMonitor::peakDetector(
 }
 
 /**
- * Return estimated heart rate based on sample rate.
+ * Return estimated heart rate based on sample rate
+ * based on two waves and frequency
  *
  * @param sample rate em HZ
  * @param peak index
@@ -86,8 +87,8 @@ int bPressureMonitor::estimateHr(
 }
 
 /**
- * Return measure result from waveform array at user selected point
- *
+ * Return measure results from a waveform array 
+ * based on user selected point
  * @param array containing entire waveform
  * @param size of the buffer
  * @param point index selected by user
@@ -111,12 +112,12 @@ int bPressureMonitor::measure(
   this->peakDetector(buffer, size, peaks);
   // Search on peak vector the index target
   for (unsigned int i=0; i < peaks.size(); i++) {
-    // Check if index is between range peak-valley and is the high peak
-    if (index-1 >= peaks[i].valley &&
+    // Check if the index is between range peak-trough and is the highest peak
+    if (index-1 >= peaks[i].trough &&
         index-1 <= peaks[i].peak &&
         peaks[i].distance >= peaks[i+1].distance) {
-      result.dbpIndex = peaks[i].valley + 1;
-      result.dbp = buffer[peaks[i].valley];
+      result.dbpIndex = peaks[i].trough + 1;
+      result.dbp = buffer[peaks[i].trough];
       result.sbpIndex = peaks[i].peak + 1;
       result.sbp = buffer[peaks[i].peak];
       if ( i < peaks.size() )

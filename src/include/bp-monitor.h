@@ -22,11 +22,11 @@ class bPressureMonitor {
  private:
     // Struct for points
     struct point {
-      int valley;    // valley detected
+      int trough;    // trough detected
       int peak;      // peak detected
-      int distance;  // distance from peak to valley
+      int distance;  // distance from peak to trough
     };
-    int valleyDetector(int*, int, int);
+    int troughDetector(int*, int, int);
     void peakDetector(int*, int, std::vector<point>&);
     int estimateHr(int sampleRate, int index, std::vector<point>&);
 };
