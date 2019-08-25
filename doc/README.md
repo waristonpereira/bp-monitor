@@ -18,10 +18,9 @@ The algorithm is run from the peak to 0 and stop if trough found.
 All trough is appended to vector for later use.
 
 * Step #3 - Calculate the distance (in points) between peak and trough
-When the index of peaks and trough associated its possible to calculation distance peak to trough from all. The distance help to determine the high (valid area to measure) / low (dicrotic notch) waves.
+when the index of peaks and trough associated its possible to calculation distance peak to trough from all. The distance help to determine the high (valid area to measure) / low (dicrotic notch) waves.
 
-* Step #4 - Discard distance = 0
-All distance zero is a low wave (dicrotic notch). 
+* Step #4 - Discard distance = 0 whereas all distance zero is a low wave (dicrotic notch). 
 
 * Step #5 - Done vector of *struct* peak/trough/distance values.
 
