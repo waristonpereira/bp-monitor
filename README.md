@@ -6,7 +6,7 @@
   * [Build for desktop](#build-for-desktop)
   * [Build for embedded (Raspberry PI v3)](#build-for-embedded)
 * [Usage](#usage)
-* [Tests](#usage)
+* [Tests](#tests)
 
 ### About
 
