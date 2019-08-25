@@ -7,3 +7,4 @@ src/libbpmonitor.so
 test/CMakeCache.txt
 test/cmake_install.cmake
 test/runTest
+test/Makefile
