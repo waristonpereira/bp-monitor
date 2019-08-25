@@ -127,9 +127,8 @@ else
 ...
 ```
 Return Codes
-
 Code  | Description
---- | --- | ---
+--- | ---
 0  |  Measure OK, structs contains the data
 1  |  Invalid arguments passed (Ex. zero samples, zero index, index > n samples)
 2  |  Impossible measure at index
