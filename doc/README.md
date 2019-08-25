@@ -26,7 +26,7 @@ All distance zero is a low wave (dicrotic notch).
 * Step #5 - Done vector of *struct* peak/trough/distance values.
 
 ### Final result of preprocessing
-![ABP Wave](https://raw.github.com/waristonpereira/bp-monitor/master/doc/peak.png)
+![ABP Wave](https://raw.github.com/waristonpereira/bp-monitor/master/doc/peaks.png)
 
 ## Measure
 The measure consists in verifying if `index-1` is among one of waves valid. If found display the results like `SBP = peak + 1` and `DBP = trough + 1`. Then `+1` is necessary because the search point from the user start in 1, not 0 (vector default).
