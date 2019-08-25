@@ -123,6 +123,19 @@ runTests/fast:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/build
 .PHONY : runTests/fast
 
+#=============================================================================
+# Target rules for targets named gcov
+
+# Build rule for target.
+gcov: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gcov
+.PHONY : gcov
+
+# fast build rule for target.
+gcov/fast:
+	$(MAKE) -f CMakeFiles/gcov.dir/build.make CMakeFiles/gcov.dir/build
+.PHONY : gcov/fast
+
 tests.o: tests.cpp.o
 
 .PHONY : tests.o
@@ -157,8 +170,9 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... runTests"
 	@echo "... edit_cache"
+	@echo "... runTests"
+	@echo "... gcov"
 	@echo "... tests.o"
 	@echo "... tests.i"
 	@echo "... tests.s"

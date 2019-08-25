@@ -1,3 +1,4 @@
 /home/wariston/bp-monitor/test/CMakeFiles/rebuild_cache.dir
-/home/wariston/bp-monitor/test/CMakeFiles/runTests.dir
 /home/wariston/bp-monitor/test/CMakeFiles/edit_cache.dir
+/home/wariston/bp-monitor/test/CMakeFiles/runTests.dir
+/home/wariston/bp-monitor/test/CMakeFiles/gcov.dir

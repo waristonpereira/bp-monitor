@@ -1,6 +1,8 @@
 .vscode
 buildroot
 example/example
+example/*.o
+example/*.d
 src/*.o
 src/*.d
 src/libbpmonitor.so
@@ -8,3 +10,5 @@ test/CMakeCache.txt
 test/cmake_install.cmake
 test/runTest
 test/Makefile
+test/*.o
+test/*.d

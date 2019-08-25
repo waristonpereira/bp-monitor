@@ -102,6 +102,38 @@ clean: CMakeFiles/runTests.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/gcov.dir
+
+# All Build rule for target.
+CMakeFiles/gcov.dir/all:
+	$(MAKE) -f CMakeFiles/gcov.dir/build.make CMakeFiles/gcov.dir/depend
+	$(MAKE) -f CMakeFiles/gcov.dir/build.make CMakeFiles/gcov.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wariston/bp-monitor/test/CMakeFiles --progress-num= "Built target gcov"
+.PHONY : CMakeFiles/gcov.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/gcov.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wariston/bp-monitor/test/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/gcov.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wariston/bp-monitor/test/CMakeFiles 0
+.PHONY : CMakeFiles/gcov.dir/rule
+
+# Convenience name for target.
+gcov: CMakeFiles/gcov.dir/rule
+
+.PHONY : gcov
+
+# clean rule for target.
+CMakeFiles/gcov.dir/clean:
+	$(MAKE) -f CMakeFiles/gcov.dir/build.make CMakeFiles/gcov.dir/clean
+.PHONY : CMakeFiles/gcov.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/gcov.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Special targets to cleanup operation of make.
 
 # Special rule to run CMake to check the build system integrity.

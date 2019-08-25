@@ -6,6 +6,7 @@
   * [Build for desktop](#build-for-desktop)
   * [Build for embedded (Raspberry PI v3)](#build-for-embedded)
 * [Usage](#usage)
+* [Tests](#usage)
 
 ### About
 
@@ -113,7 +114,7 @@ To use this library simple include header:
 ...
 ```
 
-Instantiate de `BP_MONITOR` class and call method `measure` passing as parameter the waveform buffer (as array of int), the size of the buffer, and the point index selected by user.
+Instantiate de `bPressureMonitor` class and call method `measure` passing as parameter the waveform buffer (as array of int), the size of the buffer, the point index selected by user and the `bPressure` struct by ref to receive data.
 
 ```c++
 ...
@@ -126,10 +127,10 @@ else
   # Measure OK
 ...
 ```
-Return Codes
+Return codes
 
 Code  | Description
---- | ---
+:---: | ---
 0  |  Measure OK, structs contains the data
 1  |  Invalid arguments passed (Ex. zero samples, zero index, index > n samples)
 2  |  Impossible measure at index
@@ -146,3 +147,33 @@ struct BP {
 ```
 
 Example of use in folder [example](https://github.com/waristonpereira/bp-monitor/tree/master/example).
+
+## Tests
+
+Unit tests is on folder `test`. The file `tests.cpp` contains test cases in [Google Test](https://github.com/google/googletest/)) Format.
+
+To run:
+```sh
+$ cd ~/bp-monitor/test
+$ cmake
+$ make
+$ ./runTests
+```
+
+Test Cases
+
+Code  | Description
+:---: | ---
+measureValues |  Test true results cases
+MeasureFailed |  Test true failed measure cases
+InvalidArgs |  Test invalid measure request param
+injectData |  Try to modify values before request
+
+Coding style
+
+The code is based on [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) and checked with `cpplint.py`script provide by Google.
+
+Try on folder `bp-monitor`
+```sh
+$ cpplint.py --counting=detailed $( find . -name *.h -or -name *.cpp | grep -vE "CMakeFiles" )
+```
