@@ -44,9 +44,10 @@ int main() {
   if (retCode) {
     cout << "Return error " << retCode << std::endl;
   } else {
-    cout << "systolic " << result.dbp << " @ index: "
+    cout << "systolic\t" << result.dbp << "\t@ index:\t"
     << result.dbpIndex << std::endl;
-    cout << "diastolic " << result.sbp << " @ index: "
+    cout << "diastolic\t" << result.sbp << "\t@ index:\t"
     << result.sbpIndex << std::endl;
+    cout << "estimated HR\t" << result.hr << "\tBPM" << std::endl;
   }
 }

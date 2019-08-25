@@ -9,7 +9,11 @@
 /home/wariston/bp-monitor/src/bp-monitor.cpp
 include/bp-monitor.h
 /home/wariston/bp-monitor/src/include/bp-monitor.h
+math.h
+-
 vector
+-
+string
 -
 iostream
 -

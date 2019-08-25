@@ -14,6 +14,7 @@ class bPressureMonitor {
       int sbpIndex;  // systolic blood pressure index
       int dbp;       // diastolic blood pressure value
       int dbpIndex;  // diastolic blood pressure index
+      int hr;        // heart rate estimative
     };
     bPressureMonitor() {}
     ~bPressureMonitor() {}
@@ -21,12 +22,13 @@ class bPressureMonitor {
  private:
     // Struct for points
     struct point {
-      int peak;      // peak detected
       int valley;    // valley detected
+      int peak;      // peak detected
       int distance;  // distance from peak to valley
     };
     int valleyDetector(int*, int, int);
-    void peakDetector(int*, int, int, std::vector<point>&);
+    void peakDetector(int*, int, std::vector<point>&);
+    int estimateHr(int sampleRate, int index, std::vector<point>&);
 };
 
 #endif  // SRC_INCLUDE_BP_MONITOR_H_

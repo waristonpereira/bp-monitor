@@ -4,15 +4,22 @@
  * @autor Wariston Pereira <waristonnfernando@gmail.com>
  */
 #include "include/bp-monitor.h"
+#include <math.h>
 #include <vector>
-#include <iostream>
-using std::cout;
+#include <string>
+
+#ifdef _DEBUG
+  #include <iostream>
+  #define DEBUG_MSG(str) std::cout << str << std::endl
+#else
+  #define DEBUG_MSG(str)
+#endif
+
 /**
- * Detect the valley from waveform array at user selected point 
- * or peak point
+ * Detect the valley from waveform array from peak point
  * @param array containing entire waveform
  * @param size of the buffer
- * @param point index selected by user
+ * @param peak point index
  * @return 0 if not found or valley point index
  */
 int bPressureMonitor::valleyDetector(int* buffer, int size, int index) {
@@ -32,32 +39,50 @@ int bPressureMonitor::valleyDetector(int* buffer, int size, int index) {
  *
  * @param array containing entire waveform
  * @param size of the buffer
- * @param point index selected by user
  * @param vector of struct points by ref
  * @return void
  */
 void bPressureMonitor::peakDetector(
     int* buffer,
     int size,
-    int index,
     std::vector<point> &peaks) {
-  int last = index;
+  int last = 0;
   bool next = false;
   peaks.clear();
-  for (int i = index; i <= size; i++) {
+  for (int i = 0; i < size; i++) {
     if (buffer[i] > buffer[last] || next == true) {
       last = i;
       next = false;
     }
     if (buffer[i] >= buffer[i-1] &&  buffer[i] > buffer[i+1]) {
       int v = this->valleyDetector(buffer, size, last);
-      if (v != last) {
-        point p = {last, v, last-v};
+      int distance = last-v;
+      if (v != last && distance != 0) {
+        point p = {v, last, distance};
         peaks.push_back(p);
+        DEBUG_MSG(std::to_string(v) +
+            "\t->\t" +
+            std::to_string(last) + "\tDistance: \t" +
+            std::to_string(distance));
       }
       next = true;
     }
   }
+}
+
+/**
+ * Return estimated heart rate based on sample rate.
+ *
+ * @param sample rate em HZ
+ * @param peak index
+ * @param vector of peek points
+ * @return BPM estimative
+ */
+int bPressureMonitor::estimateHr(
+    int sampleRate,
+    int index,
+    std::vector<point> &peaks) {
+  return round((sampleRate / (peaks[index+1].peak - peaks[index].peak)) * 60);
 }
 
 /**
@@ -75,7 +100,7 @@ int bPressureMonitor::measure(
     int index,
     bPressure &result) {
 
-  result = {0, 0, 0, 0};
+  result = {0, 0, 0, 0, 0};
   std::vector <point> peaks;
 
   // Prevent out of range
@@ -83,17 +108,19 @@ int bPressureMonitor::measure(
     return (ERR_INVALIDARGS);
 
   // Find all peaks on buffer and put inside vector
-  this->peakDetector(buffer, size, 1, peaks);
+  this->peakDetector(buffer, size, peaks);
   // Search on peak vector the index target
   for (unsigned int i=0; i < peaks.size(); i++) {
     // Check if index is between range peak-valley and is the high peak
     if (index-1 >= peaks[i].valley &&
         index-1 <= peaks[i].peak &&
-        peaks[i].distance > peaks[i+1].distance) {
+        peaks[i].distance >= peaks[i+1].distance) {
       result.dbpIndex = peaks[i].valley + 1;
       result.dbp = buffer[peaks[i].valley];
       result.sbpIndex = peaks[i].peak + 1;
       result.sbp = buffer[peaks[i].peak];
+      if ( i < peaks.size() )
+        result.hr = this->estimateHr(125, i, peaks);
       return 0;
     }
   }

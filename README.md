@@ -53,6 +53,12 @@ $ cd ~/bp-monitor/src
 $ make
 ```
 
+For simple DEBUG version:
+```sh
+$ cd ~/bp-monitor/src
+$ make debug
+```
+
 Install on system libs:
 ```sh
 $ sudo cp ~/bp-monitor/src/libbpmonitor.so /lib
@@ -88,11 +94,13 @@ menu "Target packages"
 ```
 To build package:
 ```sh
+$ cd ~/buildroot
 $ make bp-monitor
 ```
 
 To build entire system:
 ```sh
+$ cd ~/buildroot
 $ make
 ```
 
@@ -109,23 +117,31 @@ Instantiate de `BP_MONITOR` class and call method `measure` passing as parameter
 
 ```c++
 ...
-BP_MONITOR m;
-BP result = m.measure(sample_array, number_of_samples, index_target);
+bPressureMonitor m;
+bPressure result = { 0, 0, 0, 0};
+int result = m.measure(sample_buffer, number_of_samples, index_target, bPressure result struct);
+if (result)
+  # Error on measure
+else
+  # Measure OK
 ...
 ```
-The result return as BP struct like:
+Return Codes
+| Code | Description |
+| ------------- | ------------- |
+|0 | Measeure OK, structs contains the data |
+|1 | Invalid arguments passed (Ex. zero samples, zero index, index > n samples)|
+|2 |Impossible measure at index|
+
+The struct result:
 ```c++
 struct BP {
     int SBP;  // systolic blood pressure value measure
     int SBPi; // systolic blood pressure index at measure
     int DBP;  // diastolic blood pressure value measure
     int DBPi; // diastolic blood pressure index at measure
+    int hr;   // heart rate estimative
 };
 ```
-
-An error is trigger on:
-* sample_array is empty.
-* index_target > number_of_samples.
-* impossible measure at target.
 
 Example of use in folder [example](https://github.com/waristonpereira/bp-monitor/tree/master/example).
