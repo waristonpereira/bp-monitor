@@ -155,7 +155,7 @@ Unit tests is on folder `test`. The file `tests.cpp` contains test cases in [Goo
 To run:
 ```sh
 $ cd ~/bp-monitor/test
-$ cmake
+$ cmake ./
 $ make
 $ ./runTests
 ```
