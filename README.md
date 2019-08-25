@@ -127,11 +127,11 @@ else
 ...
 ```
 Return Codes
-| Code | Description |
+| Code  | Description |
 | ------------- | ------------- |
-|0 | Measeure OK, structs contains the data |
-|1 | Invalid arguments passed (Ex. zero samples, zero index, index > n samples)|
-|2 |Impossible measure at index|
+|0  |  Measeure OK, structs contains the data |
+|1  |  Invalid arguments passed (Ex. zero samples, zero index, index > n samples) |
+|2  |  Impossible measure at index  |
 
 The struct result:
 ```c++
